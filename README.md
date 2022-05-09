@@ -1,7 +1,6 @@
 Vue Türkçeleştirme çalışmaları. 
 # Temeller
-| 01. | Creating an Application  |
-|-----|--------------------------|
+| 01. | [Creating an Application](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/Creating_an_Application.md)  |
 | 02. | Template Syntax          |
 | 03. | Reactivity Fundamentals  |
 | 04. | [Computed Properties](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/Computed_Properties.md)      |
