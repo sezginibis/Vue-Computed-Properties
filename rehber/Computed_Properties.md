@@ -6,15 +6,15 @@ Computed Properties (Hesaplanan Özellikler) Vue'nun verilerimizi dönüştürme
 <script setup>
 import { ref, computed } from 'vue'
  
-const newItem = ref('')
-const characterCount = computed(() => {
-  return newItem.value.length
+const yeniOge = ref('')
+const karakterSayisi = computed(() => {
+  return yeniOge.value.length
 })
 </script>
 
 <template>
-<input v-model.trim="newItem" type="text" placeholder="Bir metin ekleyin" /><br>
-Metninizin uzunluğu {{characterCount}} karakterdir.
+<input v-model.trim="yeniOge" type="text" placeholder="Bir metin ekleyin" /><br>
+Metninizin uzunluğu {{ karakterSayisi }} karakterdir.
 </template>
 ```
 
@@ -45,7 +45,7 @@ const yapilacaklariTersCevir = computed(()=>{
 </script>
 <template>
   	<div><input @keyup.enter="yapilacaklaraEkle"></div>
-		<div v-for="yap in yapilacaklariTersCevir" :key="yap.id">{{yap.id}} {{ yap.baslik }}</div>
+		<div v-for="yap in yapilacaklariTersCevir" :key="yap.id">{{ yap.id }} {{ yap.baslik }}</div>
 </template>
 ```
 # Basitçe
@@ -111,7 +111,7 @@ Computed property yerine bunu bir fonksiyon olarak da tanımlayabiliriz. Sonuç 
 
 Bu aynı zamanda aşağıdaki computed property nin asla güncellenmeyeceği anlamına gelir. Çünkü `Date.now()` reaktif bir bağımlılık değildir.
 ```javascript
-const now = computed(() => Date.now())
+const simdi = computed(() => Date.now())
 ```
 Karşılaştırıldığında; bir metot çağırmada, yeniden oluşturma her gerçekleştiğinde fonksiyon çalışacaktır.
 
@@ -124,38 +124,38 @@ Computed properties varsayılan olarak yalnızca getter dir (alıcıdır/alımd�
 <script setup>
 import { ref, computed } from 'vue'
 
-const firstName = ref('John')
-const lastName = ref('Doe')
+const adi = ref('John')
+const soyadi = ref('Doe')
 
-const writableFullName = computed({
+const yazdirilabilirTamAdi = computed({
   // getter
   get() {
-    return firstName.value + ' ' + lastName.value
+    return adi.value + ' ' + soyadi.value
   },
   // setter
-  set(newValue) {
-    // Note: we are using destructuring assignment syntax here.
-    [firstName.value, lastName.value] = newValue.split(' ')
+  set(yeniDeger) {
+    // Not: burada destructuring assignment syntax (yıkıcı atama sözdizimini) kullanıyoruz .
+    [adi.value, soyadi.value] = yeniDeger.split(' ')
   }
 })
 
-const fullName = computed(()=>{
-  return firstName.value + ' ' + lastName.value
+const adiSoyadi = computed(()=>{
+  return adi.value + ' ' + soyadi.value
 })
 
-const changedWritableFullName = writableFullName.value = 'Bütün Yılmaz'
-const changedFullName = fullName.value = 'Bahadır Cinali'
+const degistirilmisYazdirilabilirTamAdi = yazdirilabilirTamAdi.value = 'Bütün Yılmaz'
+const degistirilmisAdiSoyadi = adiSoyadi.value = 'Bahadır Cinali'
 
 </script>
 <template>
-<b>firstName:</b> {{firstName}} <b>lastName:</b> {{lastName}} (<small>Değişti ve buranın John Doe olması gerekiyordu.</small>)<br>
-{{writableFullName}}<br>
-{{changedWritableFullName}}<br>
-{{fullName}}<br>
-{{changedFullName}} (<small>Ancak bu kullanımla değişmedi</small>)<br>
+<b>adi:</b> {{ adi }} <b>soyadi:</b> {{ soyadi }} (<small>Değişti ve buranın John Doe olması gerekiyordu.</small>)<br>
+{{yazdirilabilirTamAdi}}<br>
+{{degistirilmisYazdirilabilirTamAdi}}<br>
+{{adiSoyadi}}<br>
+{{degistirilmisAdiSoyadi}} (<small>Ancak bu kullanımla değişmedi</small>)<br>
 </template>
 ```
-Artık böylelikle `writableFullName.value='Bütün Yılmaz'` çalıştırdığınızda setter çağrılır ve onAdi ile soyadi buna göre güncellenir. Yani tamAdi değeri için artık `'Bütün Yılmaz'` kalıcı olur.
+Artık böylelikle `degistirilmisYazdirilabilirTamAdi.value='Bütün Yılmaz'` çalıştırdığınızda setter çağrılır ve onAdi ile soyadi buna göre güncellenir. Yani tamAdi değeri için artık `'Bütün Yılmaz'` kalıcı olur.
 
 # Pratik kullanım önerileri ve dikkat edilmesi gerekenler
 
