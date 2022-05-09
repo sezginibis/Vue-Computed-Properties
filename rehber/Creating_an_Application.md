@@ -100,7 +100,7 @@ const app2 = createApp({
 })
 app2.mount('#container-2')
 ```
-Server tarafından render edilen HTML'i Vue ile geliştirmek ya da yalnızca yine Vue'nin büyük bir sayfanın belirli bölümlerinin kontrol edebilmesi için Vue'ya ihtiyacınız varsa tüm sayfaya tek Vue app instance'ını mount etmekten çekinmeyin. Burada anlatılmak istenen husus, belirtilen bu tür kullanımlarda bile birden fazla app instance'ı oluşturabileceğiniz ve bunların kontrolünü gerçekleştiricek elementlere ayrı ayrı bağlayarak kullanabileceğinizin de hatırlatımasına yöneliktir.  
+Server tarafından render edilen HTML'i Vue ile geliştirmek ya da yalnızca yine Vue'nin büyük bir sayfanın belirli bölümlerinin kontrol edebilmesi için Vue'ya ihtiyacınız varsa tüm sayfaya tek Vue app instance'ını mount etmekten çekinmeyin. Burada anlatılmak istenen husus, belirtilen bu tür kullanımlarda bile birden fazla app instance'ı oluşturabileceğiniz ve bunların kontrolünü gerçekleştirecek elementlere ayrı ayrı bağlayarak kullanabileceğinizin de hatırlatılmasına yöneliktir.  
 
 # Kaynakça
 Bu sayfadaki tüm bilgiler daha basit anlayabilmem/anlayabilmeniz için bir miktar bilgi daha eklenerek [bu sayfadan](https://vuejs.org/guide/essentials/application.html#multiple-application-instances) çevrilmiştir. 
