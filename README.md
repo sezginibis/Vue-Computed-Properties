@@ -4,7 +4,7 @@ Vue Türkçeleştirme çalışmaları.
 |-----|--------------------------|
 | 02. | Template Syntax          |
 | 03. | Reactivity Fundamentals  |
-| 04. | [Computed Properties](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/Computed_Properties.md)      |
+| 04. | [Computed Properties](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/Computed_Properties.md)      |
 | 05. | Class and Style Bindings |
 | 06. | Conditional Rendering    |
 | 07. | List Rendering           |
