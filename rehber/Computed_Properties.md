@@ -127,7 +127,7 @@ import { ref, computed } from 'vue'
 const adi = ref('John')
 const soyadi = ref('Doe')
 
-const yazdirilabilirTamAdi = computed({
+const yazilabilirTamAdi = computed({
   // getter
   get() {
     return adi.value + ' ' + soyadi.value
@@ -143,19 +143,19 @@ const adiSoyadi = computed(()=>{
   return adi.value + ' ' + soyadi.value
 })
 
-const degistirilmisYazdirilabilirTamAdi = yazdirilabilirTamAdi.value = 'Bütün Yılmaz'
+const degistirilmisYazilabilirTamAdi = yazilabilirTamAdi.value = 'Bütün Yılmaz'
 const degistirilmisAdiSoyadi = adiSoyadi.value = 'Bahadır Cinali'
 
 </script>
 <template>
 <b>adi:</b> {{ adi }} <b>soyadi:</b> {{ soyadi }} (<small>Değişti ve buranın John Doe olması gerekiyordu.</small>)<br>
-{{yazdirilabilirTamAdi}}<br>
-{{degistirilmisYazdirilabilirTamAdi}}<br>
+{{yazilabilirTamAdi}}<br>
+{{degistirilmisYazilabilirTamAdi}}<br>
 {{adiSoyadi}}<br>
 {{degistirilmisAdiSoyadi}} (<small>Ancak bu kullanımla değişmedi</small>)<br>
 </template>
 ```
-Artık böylelikle `degistirilmisYazdirilabilirTamAdi.value='Bütün Yılmaz'` çalıştırdığınızda setter çağrılır ve onAdi ile soyadi buna göre güncellenir. Yani tamAdi değeri için artık `'Bütün Yılmaz'` kalıcı olur.
+Artık böylelikle `degistirilmisYazilabilirTamAdi.value='Bütün Yılmaz'` çalıştırdığınızda setter çağrılır ve adi ile soyadi buna göre güncellenir. Yani hem adiSoyadi değeri için hem de ayrı ayrı `adi` ve `soyadi` da kalıcı olarak artık `'Bütün Yılmaz'` olur.
 
 # Pratik kullanım önerileri ve dikkat edilmesi gerekenler
 
