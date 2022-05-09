@@ -1,4 +1,4 @@
-Vue Rehberi/Kılavuzu Türkçeleştirme çalışmaları. 
+Vue Rehberi/Kılavuzu Türkçeleştirme çalışmaları. Tüm örnekler Composition API yani `<script setup>` ile çevrilerek verilmiştir. 
 
 | 00. | Essentials               | Temeller | 
 |-----|--------------------------|----------|
