@@ -1,4 +1,4 @@
-Vue Türkçeleştirme çalışmaları. 
+Vue Rehberi/Kılavuzu Türkçeleştirme çalışmaları. 
 
 | 00. | Essentials               | Temeller | 
 |-----|--------------------------|----------|
