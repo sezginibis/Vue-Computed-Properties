@@ -38,4 +38,17 @@ Metin interpolasyonunun (ekleme yapılmasının) kullanımı: <span style="color
 v-html direktifi kullanımı ile aldığımız sonuç: 
 -Bu metin kırmızı olacak 
 ```
-Elbette yine doğal olarak HTML ve CSS etiketlerinin kullanımı ile basit şekilde birçok şey yapabiliriz. Fakat burada karşımıza yeni bir şey çıkıyor. `v-html` attribute (öznitelik) direktif adını verdik ve bu şekilde kullanıldığını gösterdik. Sizce direktif adı verilen bu özniteliğin yalnızca başına `v-` eklediğimiz için mi bu gerçekleşti? Elbette Vue'nin özniteliğin başına `-v` koyması kendisini temsil eder ve bu türdeki tüm direktiflere bu harf ile tire eklenir fakat HTML'de böyle bir öznitelik de yok. Yani bir HTML etiketine (tag) `html`  özniteliğini yazarak da böyle bir sonuca ulaşamazdık. Sonuç olarak yani tahmin edebileceğiniz üzere oluşturulan bu öznitelik artık Vue'da direktif adını alır ve DOM'a özel reaktif bir davranışı da sergiler. Mantığınızında elverdiği ölçüde böyle bir kullanımda direktif adını verdiğimiz öetiket özniteliklerini de kendimizin tanımlaması gerektiğini fark etmişsinizdir. Fakat burada temel olarak anlatılmak istenen husus saf HTML etiket ve öznitelikleri gibi Vue'da biz de kendimize özel etiket ve öznitelikler oluşturabileceğimizdir. Reaktif kullanım ile birlikte biz bu `saf HTML` kodlarımıza artık bu elementin iç özelliklerini "güncel tut" diyebiliyoruz.   
+Elbette yine doğal olarak HTML ve CSS etiketlerinin kullanımı ile basit şekilde birçok şey yapabiliriz. Fakat burada karşımıza yeni bir şey çıkıyor. `v-html` attribute (öznitelik) direktif adını verdik ve bu şekilde kullanıldığını gösterdik. Sizce direktif adı verilen bu özniteliğin başına yalnızca `v-` eklediğimiz için mi bu gerçekleşti? Elbette Vue'nin özniteliğin başına `-v` koyması kendisini temsil eder ve bu türdeki tüm direktiflere bu harf ile tire eklenir fakat HTML'de böyle bir öznitelik de yoktur. Yani bir HTML etiketine (tag) `html`  özniteliğini yazarak da böyle bir sonuca ulaşamazdık. Sonuç olarak yani tahmin edebileceğiniz üzere oluşturulan bu öznitelik artık Vue'da direktif adını alır ve DOM'a özel reaktif davranış da sergiler (eğer değişkeni reaktif hale getirdiyseniz). Mantığınızında elverdiği ölçüde böyle bir kullanımda direktif adını verdiğimiz etiket özniteliklerini de kendimizin tanımlaması gerektiğini fark etmişsinizdir. Fakat burada temel olarak anlatılmak istenen husus saf HTML etiket ve öznitelikleri gibi Vue ile birlikte, biz de kendimize özel etiket ve öznitelikler oluşturabileceğimizdir. Reaktif kullanım ile birlikte biz bu `saf HTML` kodlarımıza artık bu elementin iç özelliklerini "güncel tut" diyebiliyoruz.   
+
+Bu tür durumlarda `span` etiketinin safHTML özelliğinin değeri ile değiştirilecektir. Bildiğimiz normal HTML kullanımları da aynen yorumlanır. Bazı dillerde kullanıldığı üzere `v-html` ile template içinde bölümler oluşturulabilir. Ancak Vue'da böyle bir kullanım yoktur. Çünkü Vue string (dize) tabanlı bir şablonlama motoru değildir. Bu nedenle bunun yerine Vue'da UI kullanımı ve komponizyonlaması (bileşenlerden oluşur hâle getirme) temel birim olarak komponentler kullanılmaktadır. 
+
+
+```diff 
+-GÜVENLİK UYARISI 
+``` 
+|Elbette tüm bu konuştuklarımız doğrultusunda, template içerisinde Vue direktifleri ile birlikte aynı zamanda normal HTML etiketi attribute'larını kullanabileceğimizi de düşünmüş olmalısınız. Bunda bir problem bulunmamasına rağmen Vue template içinde dinamik olarak rastgele şekilde `v-html` ile HTML kodları oluşturmak tehlikeli olabilir. Bu durum belki XSS güvenlik açıklarına yol açabilir. Bu nedenle `v-html` direktifini yalnızca güvenilen içeriklerde kullanın ve asla kullanıcı tarafından sağlanan içeriklerde bu direktife kodlamanızda yer vermeyin. |
+|---|
+
+# Attribute (Öznitelik) Bağlantıları
+
+
