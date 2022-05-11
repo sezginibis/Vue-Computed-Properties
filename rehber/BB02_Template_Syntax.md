@@ -49,6 +49,75 @@ Bu tür durumlarda `span` etiketinin safHTML özelliğinin değeri ile değişti
 |Elbette tüm bu konuştuklarımız doğrultusunda, template içerisinde Vue direktifleri ile birlikte aynı zamanda normal HTML etiketi attribute'larını kullanabileceğimizi de düşünmüş olmalısınız. Bunda bir problem bulunmamasına rağmen Vue template içinde dinamik olarak rastgele şekilde `v-html` ile HTML kodları oluşturmak tehlikeli olabilir. Bu durum belki XSS güvenlik açıklarına yol açabilir. Bu nedenle `v-html` direktifini yalnızca güvenilen içeriklerde kullanın ve asla kullanıcı tarafından sağlanan içeriklerde bu direktife kodlamanızda yer vermeyin. |
 |---|
 
-# Attribute (Öznitelik) Bağlantıları
+## Attribute (Öznitelik) Bağlantıları
+Çift süslü parantezler HTML özniteliklerinde (attributes) kullanılamaz. Bunun yerine `v-bind` direktifini kullanın.
+```html
+<div v-bind:id="dinamikId"></div>
+```
+`v-bind` direktifi böylelikle Vue'ya elementin `id` özniteliğini (attribute) komponentin dinamik özelliği ile senkronize olmuş halde tutması talimatını vermiş olur. Eğer deer `null` (boş) ya da `undefined` (tanımsız) ise attribute (öznitelik) oluşturulmuş bu elementten kaldırılacaktır.  
+
+## Kısa gösterimi/kullanımı
+`v-bind` çok yaygın olarak kullanıldığından dolayı bunun için özel bir kısaltma uygulanmıştır:
+```html
+<div :id="dinamikId"></div>
+```
+`:` ile başlayan öznitelikler doğal olarak normal HTML'den farklı görünebilir ancak aslında öznitelik adları geçerlidir ve karakter olduğu tüm Vue destekli tarayıcılar tarafından ayrıştırılarak (parse) doğru bir şekilde anlaşılır. Ayrıca render aşamasının ardından görünmezler. Elbette bu kullanım isteğe bağlıdır ancak kullanımı hakkında daha fazla bilgi edindiğinizde siz de bunu sıkça kullanacaksınız.
+
+|Bu rehberin geriye kalan bölümlerinde Vue geliştiricileri tarafından sıklıkla kullanıldığından dolayı `v-bind` için kısa sözdizimini kullanacağız.|
+|---|
+
+## Boole (doğru/yanlış) attributes (öznitelikleri)
+Boole öznitelikleri bir elementin üzerindeki kullanımı ile doğru orantılı olarak bunun yanlış(false)/true(doğru) değerlerini gösterebilen attribute'lerdir. Bunun ile ilgili en sık görülen örneklerden birisi `disabled` (devre dışı) özniteliğidir.  
+
+`v-bind` böyle bir durumda biraz farklı çalışır:
+```html
+<button :devredisi="butonDevreDisimi">Buton</button>
+```
+`butonDevreDisimi` true (doğru) bir değere sahip ise `Buton` butonu özniteliği içeriğe [dâhil edilecektir](https://developer.mozilla.org/en-US/docs/Glossary/Truthy). Şayet bu boş bir dize ise false (yanlış) konumunda kalacaktır ve içerikte gösterilmeyecektir ki, bu durum `<button :devredisi="">` şeklindeki kullanım ile aynı anlama gelir. Ayrıca bu durumda attribute [çıkarılacaktır](https://developer.mozilla.org/en-US/docs/Glossary/Falsy). 
+
+# Birden fazla özniteliği dinamik olarak bağlamak
+Eğer aşağıdakine benzeyen türde birden çok attribute'ü temsil eden bir JavaScript objeniz/nesneniz varsa:
+```javascript
+const objeninAttrleri = {
+  id: 'container',
+  class: 'wrapper'
+}
+```
+Başkaca ek bir argüman kullanmadan bunları tek bir elemente bağlayabilirsiniz/aktarabilirsiniz. Şu şekilde:
+```html
+<div v-bind="objeninAttrleri"></div>
+```
+
+# JavaScript İfadelerini (Expressions) Kullanmak
+Rehberimizde şimdiye kadar anlattıklarımızda yalnızca basit özellik anahtarları (property key) ile bağlantıları kullandık. Ancak belirtmek isteriz ki Vue, tüm veri bağlamalarında JavaScript expressions (ifadelerinin) tüm gücünü kullanabilme yeteneğine sahiptir.
+
+```javascript
+{{ sayi + 1 }}
+
+{{ ok ? 'EVET' : 'HAYIR' }}
+
+{{ mesaj.split('').reverse().join('') }}
+
+<div :id="`list-${id}`"></div>
+```
+Bu kullanımlardaki tüm ifadeler (expressions) geçerli komponent (bileşen) örneğinin verileri kapsamında JavaScript kullanımı olarak değerlendirilecektir. 
+
+Vue template'lerinde (şablonlarında) JavaScript ifadeleri (expressions) aşağıda belirtilen pozisyonlarda/konumlarda kullanılabilir.
+- Metne ekleme yapıldığında (çift süslü parantez ile)
+- Herhangi bir `v-` özniteliği (attribute) ile başlayan Vue direktifi ile kullanımdaki veri değerlerinde
+
+# Yalnızca ifadelerde (expressions)
+Her bağlama (binding) yalnızca tek bir ifade (expression) ile çalışır. Yani aşağıdaki kullanımlar ÇALIŞMAYACAKTIR:
+```javascript
+<!-- bu bir statement'tır (açıklama), bir expression (ifade) değildir: -->
+{{ var a = 1 }}
+
+<!-- flow control (akış kontrolü) de çalışmaz bunun yerine ternary expressions (üçlü ifadeler) kullanın -->
+{{ if (ok) { return mesaj } }}
+```
+
+# Arama/Çağırma (calling) Fonksiyonları
+
+
 
 
