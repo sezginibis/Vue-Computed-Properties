@@ -118,6 +118,58 @@ Her bağlama (binding) yalnızca tek bir ifade (expression) ile çalışır. Yan
 
 # Arama/Çağırma (calling) Fonksiyonları
 
+Bir bağlama ifadesinde (binding expression) komponente açık bir metot çağırmak mümkündür:
+```html
+<span :title="toTitleDate(date)">
+  {{ formatDate(date) }}
+</span>
+```
+|İPUCU: |
+|---|
+|Bağlama ifadeleri içinde çağrılan fonksiyonlar, komponent her güncellendiğinde çağrılır. Bu nedenle söz konusu fonksiyonların/metotların veri değiştirme veya asenkron işlemleri tetikleme gibi yan etkileri olmamalıdır.|
 
+## Korumalı Alana Global Erişim
+Template expressions (şablon ifadeleri) korumalı alandadır ve yalnızca [sınırlı globaller listesindekiler](https://github.com/vuejs/core/blob/main/packages/shared/src/globalsWhitelist.ts#L3) bu alana erişebilir. Bu liste `Math` ve `Date` gibi yaygın şekilde kullanılan globallerdir. 
 
+Listede açık bir şekilde belirtimeyen globaller, örneğin `window` özelliği altında kullanıcıya bağlı olanlar template expression'dan (şablon ifadeleri) erişilebilir olmayacaktır. Ancak [`app.config.globalProperties`'e](https://vuejs.org/api/application.html#app-config-globalproperties) ekleyerek tüm Vue ifadeleri için ek globalleri açıkça tanımlayabilirsiniz.
+
+# Direktifler
+Direktifler `v-` ön etiketine sahip özel attribute'lerdir. Vue yukarıda tanıttığımız `v-html` ve `v-bind` dâhil olmak üzere bir dizi [yerleşik direktifi](https://vuejs.org/api/built-in-directives.html) size sağlar. Direktif attribue değerlerinin tek bir JavaScript ifadesi olması beklenir. Ancak ilgili `v-for`, `v-on` ve `v-slot` için bu durum geçerlidir ve bu rehberde söz konusu direktifler ayrıntılı olarak anlatılacaktır. Bir direktifin görevi, ifadesinin değeri değiştiğinde DOM'a reaktif olarak güncellemeleri uygulamaktır. Buna bir `v-if` örneği verirsek:
+```html
+<p v-if="gorulen">Şimdi beni görüyorsun</p>
+```
+Burada `v-if` direktifi gorulen ifadesinin doğruluğuna bağlı olarak <p> elementini kaldırır/ekler.
+  
+## Argümanlar
+Bazı direktifler bir 'argüman' alabilir ki bu argümanlar direktiften sonra iki nokta üstüste (`:`) ile gösterilir. Örneğin bir HTML attribute'ünü reaktif olarak güncelleyebilmek için bir `v-bind` direktifi kullanırız:
+```html
+<a v-bind:href="url"> ... </a>
+
+<!-- kısa gösterim -->
+<a :href="url"> ... </a>
+```
+Burada `href` bir argümandır ve böylelikle `v-bind` direktifine elementin `href` attribute'ünün `url` ifadesinin (expression) değerine bağlaması gerektiğini anlatır. Kısa kullanımda argümandan önceki her şey (yani `v-bind`) kullanılarak `:` karakterine yoğunlaştırılır. 
+  
+Kullanacağımız başka bir örnek ise DOM olaylarını (event) dinleyen `v-on` direktifidir:
+```html
+<a v-on:click="birSeyYap"> ... </a>
+
+<!-- kısa kullanım -->
+<a @click="birSeyYap"> ... </a>
+```
+Burada argüman `click` ile dinlenecek event'ın adıdır. `v-on` için kısaltma karakteri `@` simgesi olup, kısaltması bulunan birkaç direktiften birisidir. Event handling (olay işleme) ile ilgili daha ayrıntılı bilgiler bu rehberde anlatılacaktır.  
+  
+## Dinamik argümanlar
+Bir JavaScript ifadesini (expression) bir direktif argümanında köşeli parantez içine alarak kullanmak mümkündür:
+```html
+<!--
+Argüman ifadelerinde (expression) aşağıdaki "Dinamik Argüman Değer Kısıtlamaları" ile "Dinamik Argüman Sinteks Kısıtlamaları"
+bölümlerinde anlatıldığı üzere bazı kısıtlamalar olduğunu unutmayın,
+-->
+<a v-bind:[attributeAdi]="url"> ... </a>
+
+<!-- kısa kullanım -->
+<a :[attributeAdi]="url"> ... </a>
+```
+Burada `attributeAdi` dinamik olarak bir JavaScript  ifadesi olarak değerlendirilecektir ve bu son değeri olarak kullanılacaktır. Örneğin; Komponentiniz değeri `href` olan `attributeAdi` isimli bir bir data özelliğine sahipse bunu `v-bind:href` ile bağlamalı ve eşdeğer haline getirmelisiniz.   
 
