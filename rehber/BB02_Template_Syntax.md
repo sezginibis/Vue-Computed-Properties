@@ -159,7 +159,7 @@ Kullanacağımız başka bir örnek ise DOM olaylarını (event) dinleyen `v-on`
 ```
 Burada argüman `click` ile dinlenecek event'ın adıdır. `v-on` için kısaltma karakteri `@` simgesi olup, kısaltması bulunan birkaç direktiften birisidir. Event handling (olay işleme) ile ilgili daha ayrıntılı bilgiler bu rehberde anlatılacaktır.  
   
-## Dinamik argümanlar
+## Dinamik Argümanlar (Bağımsız Değişkenler)   
 Bir JavaScript ifadesini (expression) bir direktif argümanında köşeli parantez içine alarak kullanmak mümkündür:
 ```html
 <!--
@@ -171,5 +171,38 @@ bölümlerinde anlatıldığı üzere bazı kısıtlamalar olduğunu unutmayın,
 <!-- kısa kullanım -->
 <a :[attributeAdi]="url"> ... </a>
 ```
-Burada `attributeAdi` dinamik olarak bir JavaScript  ifadesi olarak değerlendirilecektir ve bu son değeri olarak kullanılacaktır. Örneğin; Komponentiniz değeri `href` olan `attributeAdi` isimli bir bir data özelliğine sahipse bunu `v-bind:href` ile bağlamalı ve eşdeğer haline getirmelisiniz.   
+Burada `attributeAdi` dinamik olarak bir JavaScript  ifadesi olarak değerlendirilecektir ve bunu son değeri olarak kullanılacaktır. Örneğin; Komponentiniz değeri `href` olan `attributeAdi` isimli bir bir data özelliğine sahipse bunu `v-bind:href` ile bağlamalı ve eşdeğer hale gelecektir.
+  
+Benzer şekilde bir bir işleyiciyi (bind a handler) dinamik bir event (olay) adına bağlamak için dinamik argümanları kullanabilirsiniz:
+```html
+<a v-on:[eventAdi]="birSeyYap"> ... </a>
+
+<!-- kısa kullanım -->
+<a @[eventAdi]="birSeyYap">
+```
+Bu örnekte `eventAdi`'nin değeri `focus` olduğunda, `v-on:[eventAdi]`  `v-on:focus` ile eşdeğer olacaktır.
+  
+## Dinamik Argümanlarda (Bağımsız Değişkenler) Değer Kısıtlamaları
+Dinamik argümanların kullanımında bazı sinteks kısıtlamaları bulunmaktadır. Çünkü tırnak işaretleri ve boşluklar gibi karakterler HTML attribute'ü adı olarak kullanılamaz. Örneğin aşağıdaki kullanım istenilen sonucu vermeyecektir:
+```html
+<!-- Bu kullanım bir derleme uyarısını tetikleyecektir. -->
+<a :['foo' + bar]="value"> ... </a>
+```
+Karmaşım bir argüman kullanmanız gerekiyorsa, bir sonraki rehber maddesinde ele alacağımız [computed](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB04_Computed_Properties.md) kullanmak sizin için daha iyi bir fikir olacaktır.
+  
+Doğrudan bir HTML dosyasına yazılan şablonlar kullanırken, tarayıcılar özellik adını küçük harfe zorlayacağından dolayı kelimelerin ilk başlangıç harfini büyük karakter yapmaktan kaçınmalısınız:
+```html
+<a :[someAttr]="value"> ... </a>
+```
+Yukarıdaki kullanımda `:[someAttr]` DOM içi şablonlara dönüştürelecektir. Komponentinizin `someattr` yerine `someAttr` özelliği varsa kodunuz çalışmayacaktır.
+
+## Modifiers (Değiştiriciler)
+Bunlar bir direktifin özel bir şekilde binding edilmesi (bağlanması) gerektiğini belirtilen ve nokta ile kullanılan özel son eklerdir. Örneğin, `.prevent` değiştiricisi `v-on` direktifinin arkasına eklendiğinde, `event.preventDefault()` event'ını tetikler.
+```html
+<form @submit.prevent="onSubmit">...</form>
+```
+Rehberin ilerleyen bölümlerinde `v-on` ve `v-model` için diğer modifiers'ları da göreceksiniz.
+
+Sonuç olarak bu noktaya kadar bu bölümde kullanılan isim, argüman, modifiers ve değer dörtlüsünün sıralamasını aşağıdaki şekilde sunabiliriz:
+  ![direktifler-vue-turkce1](https://user-images.githubusercontent.com/34094261/168260551-5b902148-a8a3-4f9c-b688-37e47ecaffee.png)
 
