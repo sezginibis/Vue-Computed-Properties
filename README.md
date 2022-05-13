@@ -11,7 +11,7 @@ Vue Rehberi/Kılavuzu Türkçeleştirme çalışmaları. Tüm örnekler Composit
 | ----	| :----	| ----: |
 | 01. 	| [Creating an Application](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB01_Creating_an_Application.md) 	| [Uygulama (App) Oluşturma](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB01_Creating_an_Application.md) 	|
 | 02. 	| [Template Syntax](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB02_Template_Syntax.md) 	| [Şablon Sözdizimi](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB02_Template_Syntax.md) 	|
-| 03. 	| Reactivity Fundamentals 	| Reaktivite Temelleri 	|
+| 03. 	| [Reactivity Fundamentals](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB03_Reactivity_Fundamentals.md) 	| [Reaktivite Temelleri](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB03_Reactivity_Fundamentals.md) 	|
 | 04. 	| [Computed Properties](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB04_Computed_Properties.md) 	| [Hesaplanan Özellikler](https://github.com/sezginibis/Vue-Turkcelestirme/blob/main/rehber/BB04_Computed_Properties.md) 	|
 | 05. 	| Class and Style Bindings 	| Class ve Style Bağlantıları 	|
 | 06. 	| Conditional Rendering 	| Koşullu Oluşturma 	|
