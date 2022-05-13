@@ -204,5 +204,7 @@ Bunlar bir direktifin özel bir şekilde binding edilmesi (bağlanması) gerekti
 Rehberin ilerleyen bölümlerinde `v-on` ve `v-model` için diğer modifiers'ları da göreceksiniz.
 
 Sonuç olarak bu noktaya kadar bu bölümde kullanılan isim, argüman, modifiers ve değer dörtlüsünün sıralamasını aşağıdaki şekilde sunabiliriz:
-  ![direktifler-vue-turkce1](https://user-images.githubusercontent.com/34094261/168260551-5b902148-a8a3-4f9c-b688-37e47ecaffee.png)
+![direktifler-vue-turkce1](https://user-images.githubusercontent.com/34094261/168260551-5b902148-a8a3-4f9c-b688-37e47ecaffee.png)
 
+# Kaynakça
+Bu sayfadaki tüm bilgiler daha basit anlayabilmem/anlayabilmeniz için bir miktar bilgi daha eklenerek veya eklenmeden [bu sayfadan](https://vuejs.org/guide/essentials/template-syntax.html) çevrilmiştir. 
